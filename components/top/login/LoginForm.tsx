@@ -17,7 +17,7 @@ const SignUpForm = ({ isSignUpFormModalOpen,setIsSignUpFormModalOpen } : Props) 
       <Card className="max-w-sm w-full bg-gray-800 shadow-xl">
         <div className="p-6">
           <div className="flex justify-between items-center mb-4">
-            <div className="text-xl font-semibold text-white">アカウントを作成</div>
+            <div className="text-xl font-semibold text-white">Xにログイン</div>
             <div onClick={closeSignUpFormModal} className="text-white">✖️</div>
           </div>
           <form action="/login" method="POST">
@@ -30,7 +30,8 @@ const SignUpForm = ({ isSignUpFormModalOpen,setIsSignUpFormModalOpen } : Props) 
               <Input id="password" name="password" type="password" defaultValue="" placeholder="******************" className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
             <div className="flex items-center justify-between">
-              <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">登録</Button>
+              <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">ログイン</Button>
+              <Link href="/signup" className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">アカウントを持っていない場合は登録</Link>
             </div>
           </form>
         </div>

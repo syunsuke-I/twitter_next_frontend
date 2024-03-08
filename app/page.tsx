@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import SignUpForm from "@/components/top/signup/SignUpForm";
+import { Toaster } from "@/components/ui/toaster";
+import { ErrorToaster } from "@/components/common/ErrorToaster";
 import { useState } from "react";
 
 export default function Top() {
@@ -11,6 +13,8 @@ export default function Top() {
 
   return (
     <body className="bg-black text-white">
+      <Toaster />
+      <ErrorToaster />
       <div className="flex items-center justify-center min-h-screen">
           <div className="mb-8">
             <Image 

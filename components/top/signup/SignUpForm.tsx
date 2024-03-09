@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import { instance } from "../../../app/common/api";
 
 import {Input} from "@/components/ui/input";
 import {Card} from "@/components/ui/card";
@@ -52,8 +53,8 @@ const SignUpForm = ({ isSignUpFormModalOpen,setIsSignUpFormModalOpen } : Props) 
   };
 
   const signUp = async (email : string  , password : string) => {
-    await axios.post(
-      'http://localhost:8080/signup',
+    await instance.post(
+      'signup',
       { email, password }
     ).then(res =>{
       toast({ variant: "default", title: res.data.message });

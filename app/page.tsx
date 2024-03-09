@@ -4,13 +4,25 @@ import Image from "next/image";
 import SignUpForm from "@/components/top/signup/SignUpForm";
 import { Toaster } from "@/components/ui/toaster";
 import { ErrorToaster } from "@/components/common/ErrorToaster";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function Top() {
 
   const [isSignUpFormModalOpen, setIsSignUpFormModalOpen] = useState(false);
   const openSignUpFormModal = () => setIsSignUpFormModalOpen(true);
+  const [alertShown, setAlertShown] = useState(false);
 
+  const searchParams = useSearchParams();
+  const query = searchParams.get("redirected");
+  const { toast } = useToast();
+  useEffect(() => {
+    if (query && !alertShown) {
+      toast({ variant: "default", title: "ログインして下さい" });
+      setAlertShown(true);
+    }
+  },[alertShown, query, toast]);
   return (
     <body className="bg-black text-white">
       <Toaster />

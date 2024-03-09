@@ -8,7 +8,7 @@ interface Props {
   setIsSignUpFormModalOpen : React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SignUpForm = ({ isSignUpFormModalOpen,setIsSignUpFormModalOpen } : Props) => {
+const LoginForm = ({ isSignUpFormModalOpen,setIsSignUpFormModalOpen } : Props) => {
 
   const closeSignUpFormModal = () => setIsSignUpFormModalOpen(false);
 
@@ -40,4 +40,4 @@ const SignUpForm = ({ isSignUpFormModalOpen,setIsSignUpFormModalOpen } : Props) 
   );
 };
 
-export default SignUpForm;
+export default LoginForm;

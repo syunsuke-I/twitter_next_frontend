@@ -21,12 +21,9 @@ const SignUpForm = ({ isSignUpFormModalOpen,setIsSignUpFormModalOpen } : Props) 
 
   const onSubmit = async (data: SignUpForm) => {
     try {
-      const result = await signUp(data.email, data.password);
+      await signUp(data.email, data.password);
     } catch (error) {
       toast({ variant: "destructive", title: "予期せぬエラーが発生しました" });
-    } finally {
-      setIsSignUpFormModalOpen(!isSignUpFormModalOpen);
-      reset();
     }
   };
 
@@ -35,7 +32,9 @@ const SignUpForm = ({ isSignUpFormModalOpen,setIsSignUpFormModalOpen } : Props) 
       'http://localhost:8080/signup',
       { email, password }
     ).then(res =>{
-      toast({ variant: "default", title: "サインアップに成功しました" });
+      toast({ variant: "default", title: res.data.message });
+      setIsSignUpFormModalOpen(!isSignUpFormModalOpen);
+      reset();
     }
     ).catch(error => {
       if (error.response && error.response.status === 400) {
@@ -44,9 +43,7 @@ const SignUpForm = ({ isSignUpFormModalOpen,setIsSignUpFormModalOpen } : Props) 
       } else {
         toast({ variant: "destructive", title: "予期せぬエラーが発生しました" });
       }
-    }).finally(
-
-    );
+    });
     return;
   };
   

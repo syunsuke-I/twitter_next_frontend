@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import SignUpForm from "@/components/top/signup/SignUpForm";
+import LoginForm from "@/components/top/login/LoginForm";
 import { Toaster } from "@/components/ui/toaster";
 import { ErrorToaster } from "@/components/common/ErrorToaster";
 import { useEffect, useState } from "react";
@@ -11,7 +12,9 @@ import { useToast } from "@/components/ui/use-toast";
 export default function Top() {
 
   const [isSignUpFormModalOpen, setIsSignUpFormModalOpen] = useState(false);
+  const [isLoginFormModalOpen, setIsLoginFormModalOpen] = useState(false);
   const openSignUpFormModal = () => setIsSignUpFormModalOpen(true);
+  const openLoginFormModal = () => setIsLoginFormModalOpen(true);
   const [alertShown, setAlertShown] = useState(false);
 
   const searchParams = useSearchParams();
@@ -44,7 +47,7 @@ export default function Top() {
                 <div onClick={openSignUpFormModal} className="block bg-blue-500 w-full text-center px-6 py-2 rounded-full shadow-md hover:bg-white hover:text-blue-500 focus:outline-none">アカウントを作成</div>
               </div>
               <div className="mt-9">
-                <a href="/login" className="block text-blue-500 w-full text-center border border-blue-500 px-6 py-2 rounded-full shadow-md hover:bg-blue-500 hover:text-white focus:outline-none">ログイン</a>
+                <div onClick={openLoginFormModal}  className="block text-blue-500 w-full text-center border border-blue-500 px-6 py-2 rounded-full shadow-md hover:bg-blue-500 hover:text-white focus:outline-none">ログイン</div>
               </div>
             </div>
           </div>
@@ -55,6 +58,12 @@ export default function Top() {
           setIsSignUpFormModalOpen={setIsSignUpFormModalOpen}
         />
       }
+      {isLoginFormModalOpen && 
+        <LoginForm 
+          isLoginFormModalOpen={isLoginFormModalOpen}
+          setIsLoginFormModalOpen={setIsLoginFormModalOpen}
+        />
+      }      
     </body>
   );
 }

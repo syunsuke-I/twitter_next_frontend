@@ -8,6 +8,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {LoginForm} from "../../../types/top/Login";
+import { useRouter } from "next/navigation";
 
 interface Props {
   isLoginFormModalOpen : boolean
@@ -35,6 +36,8 @@ type LoginFormType = z.infer<typeof signUpFormSchema>;
 
 const LoginForm = ({ isLoginFormModalOpen,setIsLoginFormModalOpen } : Props) => {
 
+  const router = useRouter();  
+
   const closeLoginFormModal = () => setIsLoginFormModalOpen(false);
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm<LoginFormType>({
@@ -44,7 +47,6 @@ const LoginForm = ({ isLoginFormModalOpen,setIsLoginFormModalOpen } : Props) => 
 
   const { toast } = useToast();
   const onSubmit = async (data: LoginForm) => {
-  
     try {
       await login(data.email, data.password);
     } catch (error) {
@@ -60,6 +62,7 @@ const LoginForm = ({ isLoginFormModalOpen,setIsLoginFormModalOpen } : Props) => 
       toast({ variant: "default", title: res.data.message });
       setIsLoginFormModalOpen(!isLoginFormModalOpen);
       reset();
+      router.push('/top');
     }
     ).catch(error => {
       if (error.response && error.response.status === 400) {

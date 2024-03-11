@@ -1,6 +1,13 @@
 import Image from "next/image";
 
-export default function SidebarLeft() {
+interface Props {
+  isTweetFormModalOpen : boolean
+  setIsTweetFormModalOpen : React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SidebarLeft = ({ isTweetFormModalOpen,setIsTweetFormModalOpen } : Props) => {
+
+  const openTweetFormModal = () => setIsTweetFormModalOpen(true);
 
   return(
     <div className="bg-customGray h-screen w-64 flex flex-col">
@@ -28,6 +35,10 @@ export default function SidebarLeft() {
         <i className="bi bi-bell mr-3 text-3xl"></i>
         通知
       </a>
+      <a onClick={openTweetFormModal}  href="#" className="flex items-center justify-center w-1/8 px-4 py-4 hover:bg-blue-400 hover:text-white text-xl my-4 mx-2 bg-blue-500 text-white rounded-full transition-opacity duration-300 text-center">
+        <i className="bi bi-bell mr-3 text-3xl"></i>
+        ツイートする
+      </a>
     </div>
 
     {/* <!-- プロフィールエリア --> */}
@@ -47,3 +58,5 @@ export default function SidebarLeft() {
 
   );
 };
+
+export default SidebarLeft;

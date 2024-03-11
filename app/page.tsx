@@ -44,10 +44,10 @@ export default function Top() {
             <p className="mb-6">今すぐ参加しましょう。</p>
             <div className="w-64">
               <div className="space-y-4">
-                <div onClick={openSignUpFormModal} className="block bg-blue-500 w-full text-center px-6 py-2 rounded-full shadow-md hover:bg-white hover:text-blue-500 focus:outline-none">アカウントを作成</div>
+                <a onClick={openSignUpFormModal} className="block bg-blue-500 w-full text-center px-6 py-2 rounded-full shadow-md hover:bg-white hover:text-blue-500 focus:outline-none">アカウントを作成</a>
               </div>
               <div className="mt-9">
-                <div onClick={openLoginFormModal}  className="block text-blue-500 w-full text-center border border-blue-500 px-6 py-2 rounded-full shadow-md hover:bg-blue-500 hover:text-white focus:outline-none">ログイン</div>
+                <a onClick={openLoginFormModal}  className="block text-blue-500 w-full text-center border border-blue-500 px-6 py-2 rounded-full shadow-md hover:bg-blue-500 hover:text-white focus:outline-none">ログイン</a>
               </div>
             </div>
           </div>

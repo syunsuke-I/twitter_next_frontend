@@ -9,6 +9,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {SignUpForm} from "../../../types/top/SignUp";
+import { useRouter } from "next/router";
 interface Props {
   isSignUpFormModalOpen : boolean
   setIsSignUpFormModalOpen : React.Dispatch<React.SetStateAction<boolean>>;

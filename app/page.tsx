@@ -2,15 +2,30 @@
 
 import Image from "next/image";
 import SignUpForm from "@/components/top/signup/SignUpForm";
+import LoginForm from "@/components/top/login/LoginForm";
 import { Toaster } from "@/components/ui/toaster";
 import { ErrorToaster } from "@/components/common/ErrorToaster";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function Top() {
 
   const [isSignUpFormModalOpen, setIsSignUpFormModalOpen] = useState(false);
+  const [isLoginFormModalOpen, setIsLoginFormModalOpen] = useState(false);
   const openSignUpFormModal = () => setIsSignUpFormModalOpen(true);
+  const openLoginFormModal = () => setIsLoginFormModalOpen(true);
+  const [alertShown, setAlertShown] = useState(false);
 
+  const searchParams = useSearchParams();
+  const query = searchParams.get("redirected");
+  const { toast } = useToast();
+  useEffect(() => {
+    if (query && !alertShown) {
+      toast({ variant: "default", title: "ログインして下さい" });
+      setAlertShown(true);
+    }
+  },[alertShown, query, toast]);
   return (
     <body className="bg-black text-white">
       <Toaster />
@@ -29,10 +44,10 @@ export default function Top() {
             <p className="mb-6">今すぐ参加しましょう。</p>
             <div className="w-64">
               <div className="space-y-4">
-                <div onClick={openSignUpFormModal} className="block bg-blue-500 w-full text-center px-6 py-2 rounded-full shadow-md hover:bg-white hover:text-blue-500 focus:outline-none">アカウントを作成</div>
+                <a onClick={openSignUpFormModal} className="block bg-blue-500 w-full text-center px-6 py-2 rounded-full shadow-md hover:bg-white hover:text-blue-500 focus:outline-none">アカウントを作成</a>
               </div>
               <div className="mt-9">
-                <a href="/login" className="block text-blue-500 w-full text-center border border-blue-500 px-6 py-2 rounded-full shadow-md hover:bg-blue-500 hover:text-white focus:outline-none">ログイン</a>
+                <a onClick={openLoginFormModal}  className="block text-blue-500 w-full text-center border border-blue-500 px-6 py-2 rounded-full shadow-md hover:bg-blue-500 hover:text-white focus:outline-none">ログイン</a>
               </div>
             </div>
           </div>
@@ -43,6 +58,12 @@ export default function Top() {
           setIsSignUpFormModalOpen={setIsSignUpFormModalOpen}
         />
       }
+      {isLoginFormModalOpen && 
+        <LoginForm 
+          isLoginFormModalOpen={isLoginFormModalOpen}
+          setIsLoginFormModalOpen={setIsLoginFormModalOpen}
+        />
+      }      
     </body>
   );
 }

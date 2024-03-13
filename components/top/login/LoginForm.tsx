@@ -76,8 +76,8 @@ const LoginForm = ({ isLoginFormModalOpen,setIsLoginFormModalOpen } : Props) => 
   };
   
   return (
-    <div className={` ${isLoginFormModalOpen ? 'fixed inset-0 bg-gray-600 bg-opacity-50 z-10 flex items-center justify-center overflow-y-auto overflow-x-hidden top-0 right-0 left-0 w-full md:inset-0 h-[calc(100%-1rem)] max-h-full'  : 'flex items-center justify-center min-h-screen'}`}>
-      <Card className="max-w-sm w-full bg-gray-800 shadow-xl">
+    <div className={` ${isLoginFormModalOpen ? 'fixed inset-0 bg-gray-900 bg-opacity-50 z-10 flex items-center justify-center overflow-y-auto overflow-x-hidden top-0 right-0 left-0 w-full md:inset-0 h-[calc(100%-1rem)] max-h-full'  : 'flex items-center justify-center min-h-screen'}`}>
+      <Card className="max-w-sm w-full bg-gray-900 shadow-xl">
         <div className="p-6">
           <div className="flex justify-between items-center mb-4">
             <div className="text-xl font-semibold text-white">Xにログイン</div>

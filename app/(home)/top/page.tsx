@@ -11,9 +11,10 @@ import '../../../static/css/app.css';
 export default function Top() {
 
   const [isTweetFormModalOpen, setIsTweetFormModalOpen] = useState(false);
+  const [toast, setToast] = useState("");
 
   return(
-    <div className="grid grid-container customGray bg-gray-600 text-white">
+    <div className="grid grid-container bg-gray-900 text-white">
       <SidebarLeft
         isTweetFormModalOpen={isTweetFormModalOpen}
         setIsTweetFormModalOpen={setIsTweetFormModalOpen}

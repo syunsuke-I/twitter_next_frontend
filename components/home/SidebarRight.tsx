@@ -5,10 +5,10 @@ import { IoPersonCircleOutline } from "react-icons/io5";
 
 const SidebarRight = () => {
   return (
-    <div className="h-screen">
+    <div className="h-screen bg-gray-900">
       <div className="ml-12">
         {/* 検索欄 */}
-        <div className="flex items-center rounded-full bg-gray-700 p-2 w-full max-w-sm mt-4">
+        <div className="flex items-center rounded-full bg-gray-900 p-2 w-full max-w-sm mt-4">
           <i className="bi bi-search mr-2 text-xl"></i>
           <input className="bg-transparent outline-none placeholder-gray-400 text-white pl-4 pr-3 py-1 w-full" type="search" placeholder="検索" />
         </div>
@@ -32,7 +32,7 @@ const SidebarRight = () => {
           </p>
           <div className="divide-y divide-gray-700">
             {/* アイテム */}
-            <div className="py-3 hover:bg-gray-700">
+            <div className="py-3 hover:bg-gray-900">
               <div className="text-sm font-semibold text-blue-500">Go・トレンド</div>
               <div className="text-xs text-gray-400">Goについて</div>
               <div className="text-sm text-white mt-1">トレンドビッグ：New versions of Golang are released.</div>
@@ -40,14 +40,14 @@ const SidebarRight = () => {
           </div>
           <div className="divide-y divide-gray-700">
             {/* アイテム */}
-            <div className="py-3 hover:bg-gray-700">
+            <div className="py-3 hover:bg-gray-900">
               <div className="text-sm font-semibold text-blue-500">Rails・トレンド</div>
               <div className="text-xs text-gray-400">Railsについて</div>
               <div className="text-sm text-white mt-1">トレンドビッグ：New versions of Rails are released.</div>
             </div>
           </div>
           {/* さらに表示ボタン */}
-          <button className="w-full text-blue-500 text-sm font-semibold mt-4 py-2 hover:bg-gray-700 rounded">
+          <button className="w-full text-blue-500 text-sm font-semibold mt-4 py-2 hover:bg-gray-900 rounded">
             さらに表示
           </button>
         </div>
@@ -80,7 +80,7 @@ const SidebarRight = () => {
             </div>
           </div>
           {/* さらに表示ボタン */}
-          <button className="w-full text-blue-500 text-sm font-semibold mt-4 py-2 hover:bg-gray-700 rounded">
+          <button className="w-full text-blue-500 text-sm font-semibold mt-4 py-2 hover:bg-gray-900 rounded">
             さらに表示
           </button>
         </div>

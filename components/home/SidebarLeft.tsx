@@ -16,7 +16,7 @@ const SidebarLeft = ({ isTweetFormModalOpen,setIsTweetFormModalOpen } : Props) =
   const openTweetFormModal = () => setIsTweetFormModalOpen(true);
 
   return(
-    <div className="bg-customGray h-screen w-64 flex flex-col">
+    <div className="h-screen w-64 flex flex-col bg-gray-900">
     {/* <!-- ロゴやタイトルエリア --> */}
     <div className="text-white text-xl font-bold p-4">
       <Image 
@@ -29,19 +29,19 @@ const SidebarLeft = ({ isTweetFormModalOpen,setIsTweetFormModalOpen } : Props) =
     </div>
     {/* <!-- メニューアイテムエリア --> */}
     <div className="flex-grow flex flex-col text-gray-300 mt-4">
-      <a href="#" className="flex items-center px-6 py-4 hover:bg-gray-700 hover:text-white text-xl my-2">
+      <a href="#" className="flex items-center px-6 py-4 hover:bg-gray-900 hover:text-white text-xl my-2">
         <IconContext.Provider value={{ className: 'text-gray-400 w-9 h-9 mr-3 text-3xl'}}>
           <FaHome />
         </IconContext.Provider>
         ホーム
       </a>
-      <a href="#" className="flex items-center px-6 py-4 hover:bg-gray-700 hover:text-white text-xl my-2">
+      <a href="#" className="flex items-center px-6 py-4 hover:bg-gray-900 hover:text-white text-xl my-2">
         <IconContext.Provider value={{ className: 'text-gray-400 w-9 h-9 mr-3 text-3xl'}}>
           <BsSearch />
         </IconContext.Provider>
         話題を検索
       </a>
-      <a href="#" className="flex items-center px-6 py-4 hover:bg-gray-700 hover:text-white text-xl my-2">
+      <a href="#" className="flex items-center px-6 py-4 hover:bg-gray-900 hover:text-white text-xl my-2">
         <IconContext.Provider value={{ className: 'text-gray-400 w-9 h-9 mr-3 text-3xl'}}>
           <CiBellOn />
         </IconContext.Provider>
@@ -54,8 +54,8 @@ const SidebarLeft = ({ isTweetFormModalOpen,setIsTweetFormModalOpen } : Props) =
     </div>
 
     {/* <!-- プロフィールエリア --> */}
-    <div className="mt-auto text-gray-300 p-4 hover:bg-gray-700 hover:text-white">
-      <div className="bg-gray-800 p-4 rounded-full flex items-center space-x-3">
+    <div className="mt-auto text-gray-300 p-4 hover:bg-gray-900 hover:text-white">
+      <div className="bg-gray-900 p-4 rounded-full flex items-center space-x-3">
         <IconContext.Provider value={{ color: '#ccc', size: '35px' }}>
           <IoPersonCircleOutline />
         </IconContext.Provider>        

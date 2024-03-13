@@ -106,12 +106,12 @@ export default function MainContent() {
   };
 
   return (
-    <div className="border-x border-x-0.5 border-gray-100">
+    <div className="border-x border-x-0.5 border-gray-100 bg-gray-900">
       <div className="h-screen w-full flex flex-col justify-between">
         <div>
           {/* おすすめ、フォロー中 セクション */}
           <div className="text-white flex justify-around w-full border-b border-gray-700 mt-4">
-            <div className="hover:bg-gray-700 hover:text-white">
+            <div className="hover:bg-gray-900 hover:text-white">
               <h1 className="text-xl font-bold">おすすめ</h1>
               <div className="bg-blue-500 h-1 w-20 rounded-full"></div>
             </div>

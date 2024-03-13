@@ -1,3 +1,3 @@
 export interface TweetForm {
-  contents: string;
+  content: string;
 }

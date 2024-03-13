@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 
+import { IconContext } from 'react-icons'
+import { IoPersonCircleOutline } from "react-icons/io5";
+
 interface Tweet {
   Content: string;
 }
@@ -121,7 +124,9 @@ export default function MainContent() {
           <div className="flex w-full max-w-2xl border-b border-gray-700 p-4 flex-col items-start">
             <form onSubmit={handleSubmit} className="w-full">
               <div className="flex space-x-3 mb-4 items-center">
-                <i className="bi bi-person-circle text-5xl"></i>
+                <IconContext.Provider value={{ color: '#ccc', size: '55px' }}>
+                  <IoPersonCircleOutline />
+                </IconContext.Provider> 
                 <textarea
                   placeholder="いまどうしてる？"
                   className="bg-transparent flex-1 outline-none placeholder-gray-500 text-base resize-none"

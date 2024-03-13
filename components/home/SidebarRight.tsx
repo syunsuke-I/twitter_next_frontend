@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { IconContext } from 'react-icons'
+import { IoPersonCircleOutline } from "react-icons/io5";
+
 const SidebarRight = () => {
   return (
     <div className="h-screen">
@@ -56,7 +59,9 @@ const SidebarRight = () => {
           <div className="divide-y divide-gray-700">
             {/* アイテム */}
             <div className="flex p-4 border-b border-gray-700">
-              <i className="bi bi-person-circle text-3xl"></i>
+              <IconContext.Provider value={{ color: '#ccc', size: '35px' }}>
+                <IoPersonCircleOutline />
+              </IconContext.Provider>
               <div className="ml-4 flex flex-col">
                 <span className="font-bold text-white">test_user3</span>
                 <span className="text-gray-500">@test_user3</span>
@@ -64,7 +69,9 @@ const SidebarRight = () => {
               <button className="bg-white text-black rounded-full font-bold px-6 text-sm ml-auto">フォロー</button>
             </div>
             <div className="flex p-4 border-b border-gray-700">
-              <i className="bi bi-person-circle text-3xl"></i>
+              <IconContext.Provider value={{ color: '#ccc', size: '35px' }}>
+                <IoPersonCircleOutline />
+              </IconContext.Provider>
               <div className="ml-4 flex flex-col">
                 <span className="font-bold text-white">test_user4</span>
                 <span className="text-gray-500">@test_user4</span>

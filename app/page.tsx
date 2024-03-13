@@ -37,7 +37,7 @@ export default function Top() {
               width={500}
               height={500}
               alt="x's logo-black"
-            />    
+            /> 
           </div>
           <div>
             <h1 className="text-4xl font-bold mb-6">すべての話題が、ここに。</h1>

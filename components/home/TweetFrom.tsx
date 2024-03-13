@@ -3,6 +3,7 @@ import { instance } from "../../app/common/api";
 
 import { Toaster } from "@/components/ui/toaster";
 import { ErrorToaster } from "@/components/common/ErrorToaster";
+import { AiOutlinePicture } from "react-icons/ai";
 
 import {Card} from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
@@ -72,7 +73,6 @@ interface Props {
   return(
     <div className={`${isTweetFormModalOpen ? 'fixed inset-0 bg-gray-600 bg-opacity-50 z-10 flex items-center justify-center overflow-y-auto overflow-x-hidden top-0 right-0 left-0 w-full md:inset-0 h-[calc(100%-1rem)] max-h-full' : 'flex items-center justify-center min-h-screen'}`}>
       <Card className="max-w-screen-sm w-full bg-gray-900 shadow-xl border-none" style={{ transform: 'translateX(-45px) translateY(-150px)'}}>
-      <Toaster />
       <ErrorToaster />
         <div className="p-6">
           <div className="flex justify-between items-center mb-4">
@@ -82,9 +82,14 @@ interface Props {
             <IconContext.Provider value={{ color: '#ccc', size: '35px', className: 'self-center mb-auto' }}>
               <IoPersonCircleOutline />
             </IconContext.Provider>
-            <form onClick={handleSubmit(onSubmit)} className="w-full flex flex-col items-end">
+            <form onClick={handleSubmit(onSubmit)} className="w-full flex flex-col">
               <textarea {...register('content')}  className="border-none bg-gray-900 text-white w-full h-44 bg-transparent outline-none placeholder mb-3" placeholder="いまどうしてる？"></textarea>
-              <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">ポストする</Button>
+                <div className="flex justify-between items-center mt-4">
+                  <IconContext.Provider value={{ color: '#ccc', size: '30px', className: 'cursor-pointer' }}>
+                    <AiOutlinePicture />
+                  </IconContext.Provider>
+                  <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">ポストする</Button>
+                </div>
             </form>
           </div>
         </div>

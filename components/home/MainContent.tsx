@@ -5,6 +5,11 @@ import React, { useState, useEffect } from 'react';
 import { IconContext } from 'react-icons'
 import { IoPersonCircleOutline } from "react-icons/io5";
 
+import {TweetForm} from "../../types/home/home";
+import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
+
+import useTweetForm from "../../hooks/home/useTweetForm";
+
 interface Tweet {
   Content: string;
 }
@@ -21,6 +26,12 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+}
+
+interface Props{
+  onSubmit: (data: TweetForm) => Promise<void>;
+  handleSubmit : UseFormHandleSubmit<{content: string;}, undefined>
+  register:UseFormRegister<{content: string;}>
 }
 
 const TweetsDisplay: React.FC<TweetsDisplayProps> = ({ tweets }) => {
@@ -92,18 +103,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
 export default function MainContent() {
 
-  const [content, setContent] = useState<string>('');
-  const [isTweetButtonDisabled, setIsTweetButtonDisabled] = useState<boolean>(true);
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const text = e.target.value;
-    setContent(text);
-    setIsTweetButtonDisabled(!text);
-  };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    alert(`Submitting Tweet: ${content}`);
-  };
+  const { register, handleSubmit: handleSubmit, reset, errors } = useTweetForm();
 
   return (
     <div className="border-x border-x-0.5 border-gray-100 bg-gray-900">
@@ -122,7 +122,7 @@ export default function MainContent() {
           {/* TweetForm コンポーネントを使用 */}
           {/* ツイート表示部分 */}
           <div className="flex w-full max-w-2xl border-b border-gray-700 p-4 flex-col items-start">
-            <form onSubmit={handleSubmit} className="w-full">
+            <form className="w-full">
               <div className="flex space-x-3 mb-4 items-center">
                 <IconContext.Provider value={{ color: '#ccc', size: '55px' }}>
                   <IoPersonCircleOutline />
@@ -130,19 +130,16 @@ export default function MainContent() {
                 <textarea
                   placeholder="いまどうしてる？"
                   className="bg-transparent flex-1 outline-none placeholder-gray-500 text-base resize-none"
-                  id="content"
-                  name="content"
-                  // rows="1"
-                  // maxLength="140"
-                  value={content}
-                  onChange={handleChange}
+                  {...register('content')} 
                 ></textarea>
               </div>
               <div className="flex justify-end">
                 <button
                   id="submit-button"
-                  className={`bg-blue-500 text-white rounded-full px-4 py-2 text-base transition-opacity duration-300 ${isTweetButtonDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'}`}
-                  disabled={isTweetButtonDisabled}
+                  //className={`bg-blue-500 text-white rounded-full px-4 py-2 text-base transition-opacity duration-300 ${isTweetButtonDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'}`}
+                  className={`bg-blue-500 text-white rounded-full px-4 py-2 text-base transition-opacity duration-300 'hover:bg-blue-600'}`}
+                  // disabled={isTweetButtonDisabled}
+                  onClick={handleSubmit}
                 >
                 ツイートする
                 </button>

@@ -14,7 +14,12 @@ const tweetFormSchema = z.object({
 
 type TweetFormType = z.infer<typeof tweetFormSchema>;
 
-function useTweetForm() {
+interface Props {
+  isTweetFormModalOpen? : boolean;
+  setIsTweetFormModalOpen? : React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const useTweetForm = ({isTweetFormModalOpen = false, setIsTweetFormModalOpen = () => {} }: Props = {}) => {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm<TweetFormType>({
     resolver: zodResolver(tweetFormSchema),
@@ -37,6 +42,7 @@ function useTweetForm() {
     ).then(res =>{
       toast({ variant: "default", title: res.data.message });
       reset();
+      setIsTweetFormModalOpen(!isTweetFormModalOpen);
     }
     ).catch(error => {
       if (error.response && error.response.status === 400) {

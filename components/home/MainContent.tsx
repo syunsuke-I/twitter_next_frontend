@@ -103,7 +103,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
 export default function MainContent() {
 
-  const { register, handleSubmit: handleSubmit, reset, errors } = useTweetForm();
+  const { register, handleSubmit: handleSubmit} = useTweetForm();
 
   return (
     <div className="border-x border-x-0.5 border-gray-100 bg-gray-900">

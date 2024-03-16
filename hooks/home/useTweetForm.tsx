@@ -55,7 +55,7 @@ const useTweetForm = ({isTweetFormModalOpen = false, setIsTweetFormModalOpen = (
     return;
   };
 
-  return { register, handleSubmit: handleSubmit(onSubmit), reset, errors };
+  return { register, handleSubmit: handleSubmit(onSubmit)};
 }
 
 export default useTweetForm;

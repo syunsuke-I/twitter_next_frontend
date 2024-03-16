@@ -17,7 +17,7 @@ interface Props {
  const TweetFrom = ({ isTweetFormModalOpen,setIsTweetFormModalOpen} : Props) => {
 
   const openTweetFormModal = () => setIsTweetFormModalOpen(!isTweetFormModalOpen);
-  const { register, handleSubmit } = useTweetForm({isTweetFormModalOpen,setIsTweetFormModalOpen});
+  const { register, handleSubmit,handleChange,isTweetButtonDisabled } = useTweetForm({isTweetFormModalOpen,setIsTweetFormModalOpen});
   
   return(
     <div className={`${isTweetFormModalOpen ? 'fixed inset-0 bg-gray-600 bg-opacity-50 z-10 flex items-center justify-center overflow-y-auto overflow-x-hidden top-0 right-0 left-0 w-full md:inset-0 h-[calc(100%-1rem)] max-h-full' : 'flex items-center justify-center min-h-screen'}`}>
@@ -35,7 +35,8 @@ interface Props {
               <textarea 
                 className="border-none bg-gray-900 text-white w-full h-44 bg-transparent outline-none placeholder mb-3 resize-none" 
                 placeholder="いまどうしてる？"
-                {...register('content')}  
+                {...register('content')}
+                onChange={handleChange}
               >
               </textarea>
                 <div className="flex justify-between items-center mt-4">
@@ -45,7 +46,9 @@ interface Props {
                   <Button 
                     onClick={handleSubmit} 
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
-                    type="submit">ポストする
+                    type="submit"
+                    disabled={isTweetButtonDisabled}  
+                  >ポストする
                   </Button>
                 </div>
             </form>

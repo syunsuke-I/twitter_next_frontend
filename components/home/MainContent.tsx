@@ -103,8 +103,8 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
 export default function MainContent() {
 
-  const { register, handleSubmit: handleSubmit} = useTweetForm();
-
+  const { register, handleSubmit: handleSubmit,handleChange,isTweetButtonDisabled} = useTweetForm();
+  
   return (
     <div className="border-x border-x-0.5 border-gray-100 bg-gray-900">
       <div className="h-screen w-full flex flex-col justify-between">
@@ -130,16 +130,17 @@ export default function MainContent() {
                 <textarea
                   placeholder="いまどうしてる？"
                   className="bg-transparent flex-1 outline-none placeholder-gray-500 text-base resize-none"
-                  {...register('content')} 
+                  {...register('content')}
+                  onChange={handleChange}
                 ></textarea>
               </div>
               <div className="flex justify-end">
                 <button
                   id="submit-button"
-                  //className={`bg-blue-500 text-white rounded-full px-4 py-2 text-base transition-opacity duration-300 ${isTweetButtonDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'}`}
-                  className={`bg-blue-500 text-white rounded-full px-4 py-2 text-base transition-opacity duration-300 'hover:bg-blue-600'}`}
-                  // disabled={isTweetButtonDisabled}
+                  className={`bg-blue-500 text-white rounded-full px-4 py-2 text-base transition-opacity duration-300 ${isTweetButtonDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'}`}
+                  disabled={isTweetButtonDisabled}
                   onClick={handleSubmit}
+                  type="submit"
                 >
                 ツイートする
                 </button>

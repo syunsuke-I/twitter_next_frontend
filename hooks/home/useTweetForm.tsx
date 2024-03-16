@@ -6,6 +6,7 @@ import { instance } from "../../app/common/api";
 import {TweetForm} from "../../types/home/home";
 
 import { useToast } from "@/components/ui/use-toast";
+import { useEffect, useState } from "react";
 
 const tweetFormSchema = z.object({
   content: z.string()
@@ -55,7 +56,18 @@ const useTweetForm = ({isTweetFormModalOpen = false, setIsTweetFormModalOpen = (
     return;
   };
 
-  return { register, handleSubmit: handleSubmit(onSubmit)};
+  const [content, setContent] = useState('');
+  const [isTweetButtonDisabled, setIsTweetButtonDisabled] = useState(false);
+
+  useEffect(() => {
+    setIsTweetButtonDisabled(content.trim().length === 0);
+  }, [content]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>{
+    setContent(e.target.value);
+  };
+
+  return { register, handleSubmit: handleSubmit(onSubmit),handleChange,isTweetButtonDisabled,};
 }
 
 export default useTweetForm;

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { instance } from "../../../app/common/api";
+import { jsonAxiosInstance } from "../../../app/common/api";
 
 import {Input} from "@/components/ui/input";
 import {Card} from "@/components/ui/card";
@@ -52,7 +52,7 @@ const SignUpForm = ({ isSignUpFormModalOpen,setIsSignUpFormModalOpen } : Props) 
   };
 
   const signUp = async (email : string  , password : string) => {
-    await instance.post(
+    await jsonAxiosInstance.post(
       'signup',
       { email, password }
     ).then(res =>{

@@ -38,6 +38,7 @@ const useTweetForm = ({isTweetFormModalOpen = false, setIsTweetFormModalOpen = (
 
   const [content, setContent] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   const tweet = async (content : string, file : File | null | undefined) => {
 
@@ -45,10 +46,11 @@ const useTweetForm = ({isTweetFormModalOpen = false, setIsTweetFormModalOpen = (
     formData.append("content", content);
     if (file) {
       formData.append("file", file);
+      console.info(file.name)
     }
     await formDataAxiosInstance.post(
       'tweet',
-      {formData} 
+      formData
     ).then(res =>{
       toast({ variant: "default", title: res.data.message });
       reset();
@@ -76,16 +78,19 @@ const useTweetForm = ({isTweetFormModalOpen = false, setIsTweetFormModalOpen = (
     setContent(e.target.value);
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
     if (files && files.length > 0) {
       setSelectedFile(files[0]);
+      const newFileUrls = Array.from(files).map(file => URL.createObjectURL(file));
+      // 新たに選択されたファイルのURLを既存のリストに追加し、最初の4要素のみを保持する
+      setImageUrls(prevFiles => [...prevFiles, ...newFileUrls].slice(0, 4));
     } else {
       setSelectedFile(null);
     }
   };
 
-  return { register, handleSubmit: handleSubmit(onSubmit),handleChange,isTweetButtonDisabled,handleFileChange,};
+  return { register, handleSubmit: handleSubmit(onSubmit),handleChange,isTweetButtonDisabled,handleFileChange,imageUrls};
 }
 
 export default useTweetForm;

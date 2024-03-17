@@ -11,6 +11,9 @@ import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
 import useTweetForm from "../../hooks/home/useTweetForm";
 
+import Image from "next/image";
+import ImageGallery from './ImageGallery';
+
 interface Tweet {
   Content: string;
 }
@@ -104,7 +107,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
 export default function MainContent() {
 
-  const { register, handleSubmit: handleSubmit,handleChange,isTweetButtonDisabled,handleFileChange} = useTweetForm();
+  const { register, handleSubmit: handleSubmit,handleChange,isTweetButtonDisabled,handleFileChange,imageUrls} = useTweetForm();
 
   // input要素への参照を作成
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -143,14 +146,16 @@ export default function MainContent() {
                   onChange={handleChange}
                 ></textarea>
               </div>
-              <div className="flex justify-between items-center">
+              <ImageGallery imageUrls={imageUrls} />
+              <div className="flex justify-between items-center mt-5">
                 <input
                     type="file"
                     ref={fileInputRef}
                     style={{ display: 'none' }}
                     accept="image/*"
+                    multiple
                     onChange={handleFileChange}
-                />             
+                />
                 <IconContext.Provider value={{ color: '#ccc', size: '30px', className: 'cursor-pointer ml-20' }}>
                   <AiOutlinePicture onClick={handleIconClick} />
                 </IconContext.Provider>

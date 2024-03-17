@@ -16,3 +16,20 @@
   cursor: not-allowed;
   color: #EFF3F4;
 }
+
+.image-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px; /* 画像間の隙間 */
+}
+
+.image-container img {
+  flex: 0 0 auto; /* 画像がコンテナの幅に合わせて伸縮しないようにする */
+  width: 100%; /* 1枚の場合は全幅で表示 */
+  max-width: 300px; /* 画像の最大幅を制限 */
+  height: auto; /* 画像の高さをアスペクト比に基づいて自動調整 */
+}
+
+.two-images img {
+  max-width: calc(50% - 4px); /* 2枚の場合はコンテナの半分の幅 */
+}

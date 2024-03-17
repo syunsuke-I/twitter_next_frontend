@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import {Input} from "@/components/ui/input";
-import { instance } from "../../../app/common/api";
+import { jsonAxiosInstance } from "../../../app/common/api";
 import {Card} from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -55,7 +55,7 @@ const LoginForm = ({ isLoginFormModalOpen,setIsLoginFormModalOpen } : Props) => 
   };
 
   const login = async (email : string  , password : string) => {
-    await instance.post(
+    await jsonAxiosInstance.post(
       'login',
       { email, password }
     ).then(res =>{

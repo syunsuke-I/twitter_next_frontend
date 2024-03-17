@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
+import { ChangeEvent, useEffect, useState } from "react";
+
+import { useToast } from "@/components/ui/use-toast";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { instance } from "../../app/common/api";
+import { formDataAxiosInstance } from "../../app/common/api";
 import {TweetForm} from "../../types/home/home";
-
-import { useToast } from "@/components/ui/use-toast";
-import { useEffect, useState } from "react";
 
 const tweetFormSchema = z.object({
   content: z.string()
@@ -30,16 +30,25 @@ const useTweetForm = ({isTweetFormModalOpen = false, setIsTweetFormModalOpen = (
 
   const onSubmit = async (data: TweetForm) => {
     try {
-      await tweet(data.content);
+      await tweet(data.content,selectedFile);
     } catch (error) {
       toast({ variant: "destructive", title: "予期せぬエラーが発生しました" });
     }
   };
 
-  const tweet = async (content : string) => {
-    await instance.post(
+  const [content, setContent] = useState('');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const tweet = async (content : string, file : File | null | undefined) => {
+
+    const formData = new FormData();
+    formData.append("content", content);
+    if (file) {
+      formData.append("file", file);
+    }
+    await formDataAxiosInstance.post(
       'tweet',
-      {content} 
+      {formData} 
     ).then(res =>{
       toast({ variant: "default", title: res.data.message });
       reset();
@@ -56,7 +65,7 @@ const useTweetForm = ({isTweetFormModalOpen = false, setIsTweetFormModalOpen = (
     return;
   };
 
-  const [content, setContent] = useState('');
+
   const [isTweetButtonDisabled, setIsTweetButtonDisabled] = useState(false);
 
   useEffect(() => {
@@ -67,7 +76,16 @@ const useTweetForm = ({isTweetFormModalOpen = false, setIsTweetFormModalOpen = (
     setContent(e.target.value);
   };
 
-  return { register, handleSubmit: handleSubmit(onSubmit),handleChange,isTweetButtonDisabled,};
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      setSelectedFile(files[0]);
+    } else {
+      setSelectedFile(null);
+    }
+  };
+
+  return { register, handleSubmit: handleSubmit(onSubmit),handleChange,isTweetButtonDisabled,handleFileChange,};
 }
 
 export default useTweetForm;

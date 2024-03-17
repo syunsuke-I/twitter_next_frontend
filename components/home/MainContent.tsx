@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, ChangeEvent } from 'react';
 
 import { IconContext } from 'react-icons'
 import { IoPersonCircleOutline } from "react-icons/io5";
+import { AiOutlinePicture } from "react-icons/ai";
 
 import {TweetForm} from "../../types/home/home";
 import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
@@ -103,8 +104,16 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
 export default function MainContent() {
 
-  const { register, handleSubmit: handleSubmit,handleChange,isTweetButtonDisabled} = useTweetForm();
-  
+  const { register, handleSubmit: handleSubmit,handleChange,isTweetButtonDisabled,handleFileChange} = useTweetForm();
+
+  // input要素への参照を作成
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // アイコンがクリックされた時にinputのクリックイベントを発火させる
+  const handleIconClick = (): void => {
+      fileInputRef.current?.click();
+  };
+
   return (
     <div className="border-x border-x-0.5 border-gray-100 bg-gray-900">
       <div className="h-screen w-full flex flex-col justify-between">
@@ -123,7 +132,7 @@ export default function MainContent() {
           {/* ツイート表示部分 */}
           <div className="flex w-full max-w-2xl border-b border-gray-700 p-4 flex-col items-start">
             <form className="w-full">
-              <div className="flex space-x-3 mb-4 items-center">
+              <div className  ="flex space-x-3 mb-4 items-center">
                 <IconContext.Provider value={{ color: '#ccc', size: '55px' }}>
                   <IoPersonCircleOutline />
                 </IconContext.Provider> 
@@ -134,7 +143,17 @@ export default function MainContent() {
                   onChange={handleChange}
                 ></textarea>
               </div>
-              <div className="flex justify-end">
+              <div className="flex justify-between items-center">
+                <input
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: 'none' }}
+                    accept="image/*"
+                    onChange={handleFileChange}
+                />             
+                <IconContext.Provider value={{ color: '#ccc', size: '30px', className: 'cursor-pointer ml-20' }}>
+                  <AiOutlinePicture onClick={handleIconClick} />
+                </IconContext.Provider>
                 <button
                   id="submit-button"
                   className={`bg-blue-500 text-white rounded-full px-4 py-2 text-base transition-opacity duration-300 ${isTweetButtonDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'}`}

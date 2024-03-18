@@ -90,7 +90,7 @@ const useTweetForm = ({isTweetFormModalOpen = false, setIsTweetFormModalOpen = (
     }
   };
 
-  return { register, handleSubmit: handleSubmit(onSubmit),handleChange,isTweetButtonDisabled,handleFileChange,imageUrls};
+  return { register, handleSubmit: handleSubmit(onSubmit),handleChange,isTweetButtonDisabled,handleFileChange,imageUrls,setImageUrls};
 }
 
 export default useTweetForm;

@@ -107,7 +107,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
 export default function MainContent() {
 
-  const { register, handleSubmit: handleSubmit,handleChange,isTweetButtonDisabled,handleFileChange,imageUrls} = useTweetForm();
+  const { register, handleSubmit: handleSubmit,handleChange,isTweetButtonDisabled,handleFileChange,imageUrls,setImageUrls} = useTweetForm();
 
   // input要素への参照を作成
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -146,7 +146,7 @@ export default function MainContent() {
                   onChange={handleChange}
                 ></textarea>
               </div>
-              <ImageGallery imageUrls={imageUrls} />
+              <ImageGallery imageUrls={imageUrls} setImageUrls={setImageUrls} />
               <div className="flex justify-between items-center mt-5">
                 <input
                     type="file"

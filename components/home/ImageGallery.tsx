@@ -3,27 +3,39 @@ import Image from "next/image";
 
 import '../../static/css/app.css';
 
-// ImageGallery コンポーネントのプロップスの型を定義
+import { AiOutlineClose } from 'react-icons/ai';
 interface ImageGalleryProps {
   imageUrls: string[];
+  setImageUrls: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-// ImageGallery コンポーネントの定義。プロップスの型として ImageGalleryProps を使用
-const ImageGallery: React.FC<ImageGalleryProps> = ({ imageUrls }) => {
+const ImageGallery=  ({ imageUrls,setImageUrls } : ImageGalleryProps) => {
+  
   // 画像の数に応じたクラス名を決定
   const containerClass = imageUrls.length === 2 ? 'image-container two-images' : 'image-container';
+
+  const handleRemoveImage = (index: number) => {
+    setImageUrls(prevUrls => prevUrls.filter((_, i) => i !== index));
+  };
 
   return (
     <div className={containerClass}>
       {imageUrls.map((url, index) => (
-        <Image 
-          key={index} 
-          src={url} 
-          alt={`image-${index}`}
-          width={30}
-          height={30}
-          className='md-10'
-        />
+        <div key={index} className="relative">
+          <Image
+            src={url}
+            alt={`image-${index}`}
+            width={30}
+            height={30}
+            className="md-10"
+          />
+          <button
+            onClick={() => handleRemoveImage(index)}
+            className="absolute top-0 right-0 bg-gray-800 rounded-full p-1"
+          >
+            <AiOutlineClose color="white" />
+          </button>
+        </div>
       ))}
     </div>
   );

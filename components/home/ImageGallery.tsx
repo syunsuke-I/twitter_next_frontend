@@ -26,9 +26,14 @@ const ImageGallery=  ({ imageUrls,setImageUrls } : ImageGalleryProps) => {
   const containerClass = getImageContainerClass(imageUrls.length);
 
   const handleRemoveImage = (index: number) => {
-    console.log(index)
-    setImageUrls(prevUrls => prevUrls.filter((_, i) => i !== index));
+    alert(`Removing image at index: ${index}`); // ログ出力で確認
+    setImageUrls(prevUrls => {
+      const newUrls = prevUrls.filter((_, i) => i !== index);
+      console.log(newUrls); // 新しいURLリストをログ出力で確認
+      return newUrls;
+    });
   };
+  
 
   return (
     <div className={containerClass}>
@@ -44,6 +49,7 @@ const ImageGallery=  ({ imageUrls,setImageUrls } : ImageGalleryProps) => {
           />
           <button
             onClick={() => handleRemoveImage(index)}
+            type="button"
             className="absolute top-0 right-0 bg-gray-800 rounded-full p-1"
           >
           <AiOutlineClose color="white" />

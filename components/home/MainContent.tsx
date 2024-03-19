@@ -131,7 +131,6 @@ export default function MainContent() {
               <h2 className="text-lg ml-4">フォロー中</h2>
             </div>
           </div>
-          {/* TweetForm コンポーネントを使用 */}
           {/* ツイート表示部分 */}
           <div className="flex w-full max-w-2xl border-b border-gray-700 p-4 flex-col items-start">
             <form className="w-full">

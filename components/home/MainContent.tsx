@@ -111,6 +111,7 @@ export default function MainContent() {
 
   // input要素への参照を作成
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [inputKey, setInputKey] = useState<number>(Date.now());
 
   // アイコンがクリックされた時にinputのクリックイベントを発火させる
   const handleIconClick = (): void => {
@@ -145,7 +146,7 @@ export default function MainContent() {
                   onChange={handleChange}
                 ></textarea>
               </div>
-              <ImageGallery imageUrls={imageUrls} setImageUrls={setImageUrls} />
+              <ImageGallery imageUrls={imageUrls} setImageUrls={setImageUrls} setInputKey={setInputKey} />
               <div className="flex justify-between items-center mt-5">
                 <input
                     type="file"
@@ -153,6 +154,7 @@ export default function MainContent() {
                     style={{ display: 'none' }}
                     accept="image/*"
                     multiple
+                    key={inputKey}
                     onChange={handleFileChange}
                 />
                 <IconContext.Provider value={{ color: '#ccc', size: '30px', className: 'cursor-pointer ml-20' }}>

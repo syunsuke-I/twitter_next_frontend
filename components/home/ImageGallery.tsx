@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
 
 import '../../static/css/app.css';
@@ -7,9 +7,10 @@ import { AiOutlineClose } from 'react-icons/ai';
 interface ImageGalleryProps {
   imageUrls: string[];
   setImageUrls: React.Dispatch<React.SetStateAction<string[]>>;
+  setInputKey : React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ImageGallery=  ({ imageUrls,setImageUrls } : ImageGalleryProps) => {
+const ImageGallery=  ({ imageUrls,setImageUrls ,setInputKey} : ImageGalleryProps) => {
 
   const getImageContainerClass = (imageCount : number) => {
     switch (imageCount) {
@@ -25,13 +26,11 @@ const ImageGallery=  ({ imageUrls,setImageUrls } : ImageGalleryProps) => {
   // 画像の数に応じたクラス名を決定
   const containerClass = getImageContainerClass(imageUrls.length);
 
+
   const handleRemoveImage = (index: number) => {
-    alert(`Removing image at index: ${index}`); // ログ出力で確認
-    setImageUrls(prevUrls => {
-      const newUrls = prevUrls.filter((_, i) => i !== index);
-      console.log(newUrls); // 新しいURLリストをログ出力で確認
-      return newUrls;
-    });
+    setImageUrls(prevUrls => prevUrls.filter((_, i) => i !== index));
+    // 入力要素をリセット
+    setInputKey(Date.now());
   };
   
 

@@ -10,11 +10,23 @@ interface ImageGalleryProps {
 }
 
 const ImageGallery=  ({ imageUrls,setImageUrls } : ImageGalleryProps) => {
-  
+
+  const getImageContainerClass = (imageCount : number) => {
+    switch (imageCount) {
+      case 1:
+        return 'image-container one-image';
+      case 2:
+        return 'image-container two-images';
+      default:
+        return 'image-container';
+    }
+  };
+
   // 画像の数に応じたクラス名を決定
-  const containerClass = imageUrls.length === 2 ? 'image-container two-images' : 'image-container';
+  const containerClass = getImageContainerClass(imageUrls.length);
 
   const handleRemoveImage = (index: number) => {
+    console.log(index)
     setImageUrls(prevUrls => prevUrls.filter((_, i) => i !== index));
   };
 
@@ -25,15 +37,16 @@ const ImageGallery=  ({ imageUrls,setImageUrls } : ImageGalleryProps) => {
           <Image
             src={url}
             alt={`image-${index}`}
-            width={30}
-            height={30}
+            width={100}
+            height={100}
+            sizes="100vw"
             className="md-10"
           />
           <button
             onClick={() => handleRemoveImage(index)}
             className="absolute top-0 right-0 bg-gray-800 rounded-full p-1"
           >
-            <AiOutlineClose color="white" />
+          <AiOutlineClose color="white" />
           </button>
         </div>
       ))}

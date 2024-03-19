@@ -30,6 +30,28 @@
   height: auto; /* 画像の高さをアスペクト比に基づいて自動調整 */
 }
 
-.two-images img {
-  max-width: calc(50% - 4px); /* 2枚の場合はコンテナの半分の幅 */
+.image-container .relative {
+  position: relative; /* ボタンの絶対配置の基準点 */
+  flex: 0 0 auto; /* コンテナが flex の場合、これにより画像が伸縮しないように設定 */
+  width: 100%; /* 1枚またはデフォルトの場合の幅 */
+  max-width: 300px; /* 画像の最大幅を制限 */
 }
+
+.image-container.one-image .relative,
+.image-container.two-images .relative {
+  width: calc(50% - 4px); /* 2枚のときの幅を調整 */
+}
+
+.image-container.two-images .relative {
+  justify-content: space-between; /* 2枚の画像がコンテナの端に配置されるように */
+}
+
+/* 閉じるボタンの位置を調整 */
+.image-container .relative button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+

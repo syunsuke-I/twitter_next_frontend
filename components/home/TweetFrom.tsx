@@ -12,6 +12,7 @@ import { useRef, useState } from "react";
 import ImageGallery from "./ImageGallery";
 
 import '../../static/css/app.css';
+import { Toaster } from "../ui/toaster";
 
 interface Props {
   isTweetFormModalOpen : boolean
@@ -34,6 +35,7 @@ interface Props {
   return(
     <div className={`${isTweetFormModalOpen ? 'fixed inset-0 bg-gray-600 bg-opacity-50 z-10 flex items-center justify-center overflow-y-scroll overflow-x-hidden top-0 right-0 left-0 w-full md:inset-0 h-modal max-h-full' : 'flex items-center justify-center min-h-screen'}`}>
       <Card className="max-w-screen-sm w-full overflow-y-scroll bg-gray-900 shadow-xl border-none" style={{ transform: 'translateX(-45px) translateY(-150px)'}}>
+      <Toaster />
       <ErrorToaster />
         <div className="p-6">
           <div className="flex justify-between items-center mb-4">

@@ -28,8 +28,7 @@ const ImageGallery=  ({ imageUrls,setImageUrls ,setInputKey} : ImageGalleryProps
 
   const handleRemoveImage = (index: number) => {
     setImageUrls(prevUrls => prevUrls.filter((_, i) => i !== index));
-    // 入力要素をリセット
-    setInputKey(Date.now());
+    setInputKey(Date.now()); // To force re-render of the input if needed
   };
 
   return (

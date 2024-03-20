@@ -13,6 +13,8 @@ import useTweetForm from "../../hooks/home/useTweetForm";
 
 import Image from "next/image";
 import ImageGallery from './ImageGallery';
+import { ErrorToaster } from '../common/ErrorToaster';
+import { Toaster } from '../ui/toaster';
 
 interface Tweet {
   Content: string;
@@ -107,7 +109,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
 export default function MainContent() {
 
-  const { register, handleSubmit: handleSubmit,handleChange,isTweetButtonDisabled,handleFileChange,imageUrls,setImageUrls} = useTweetForm();
+  const { register, handleSubmit: handleSubmit,handleChange,isTweetButtonDisabled,handleFileChange,imageUrls,setImageUrls,toast} = useTweetForm();
 
   // input要素への参照を作成
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -120,6 +122,8 @@ export default function MainContent() {
 
   return (
     <div className="border-x border-x-0.5 border-gray-100 bg-gray-900">
+      <Toaster />
+      <ErrorToaster />
       <div className="h-screen w-full flex flex-col justify-between">
         <div>
           {/* おすすめ、フォロー中 セクション */}

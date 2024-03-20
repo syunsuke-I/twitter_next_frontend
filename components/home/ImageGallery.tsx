@@ -26,13 +26,11 @@ const ImageGallery=  ({ imageUrls,setImageUrls ,setInputKey} : ImageGalleryProps
   // 画像の数に応じたクラス名を決定
   const containerClass = getImageContainerClass(imageUrls.length);
 
-
   const handleRemoveImage = (index: number) => {
     setImageUrls(prevUrls => prevUrls.filter((_, i) => i !== index));
     // 入力要素をリセット
     setInputKey(Date.now());
   };
-  
 
   return (
     <div className={containerClass}>

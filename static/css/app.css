@@ -1,0 +1,61 @@
+.customGray{
+  background-color:rgb(32, 44, 55);
+}
+.follow{
+  color:rgb(77, 87, 98);
+}
+.right_content{
+  background-color:rgb(30, 39, 50);
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1.2fr 2.3fr 1.5fr;
+}
+.submit-button:disabled {
+  opacity: 50%;
+  cursor: not-allowed;
+  color: #EFF3F4;
+}
+
+.image-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px; /* 画像間の隙間 */
+}
+
+.image-container img {
+  flex: 0 0 auto; /* 画像がコンテナの幅に合わせて伸縮しないようにする */
+  width: 100%; /* 1枚の場合は全幅で表示 */
+  max-width: 300px; /* 画像の最大幅を制限 */
+  height: 250px;
+  object-fit: cover; /* 画像がコンテナに合うように調整する */
+}
+
+.image-container .relative {
+  position: relative; /* ボタンの絶対配置の基準点 */
+  flex: 0 0 auto; /* コンテナが flex の場合、これにより画像が伸縮しないように設定 */
+  width: 100%; /* 1枚またはデフォルトの場合の幅 */
+  max-width: 300px; /* 画像の最大幅を制限 */
+}
+
+.image-container.one-image .relative,
+.image-container.two-images .relative {
+  width: calc(50% - 4px); /* 2枚のときの幅を調整 */
+}
+
+.image-container.two-images .relative {
+  justify-content: space-between; /* 2枚の画像がコンテナの端に配置されるように */
+}
+
+/* 閉じるボタンの位置を調整 */
+.image-container .relative button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* モーダルの最大高さをビューポートの高さに設定し、スクロールを有効にする */
+.h-modal {
+  max-height: 100vh; /* ビューポートの高さに合わせる */
+  overflow-y: auto; /* コンテンツが高さを超えた場合にスクロールを有効にする */
+}
